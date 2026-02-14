@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Priority Date Proposal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9ecf, #ffd6a5, #ffe8f3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Floating hearts */
+body::before {
+    content: "💖 💕 💗 💘 💓 💞";
+    position: absolute;
+    font-size: 40px;
+    width: 100%;
+    top: -50px;
+    animation: float 18s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(120vh); }
+}
+
+/* Glass Card */
+.card {
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    text-align: center;
+    color: #4a004e;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 1.7rem;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff4d88, #ff66b2);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+.small-note {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="content">
+    <h1>🚀 Strategic Date Proposal</h1>
+    <p>You + Me (N + N) – High Priority Release</p>
+    <button onclick="next()">View Proposal</button>
+</div>
+
+<script>
+
+let step = 0;
+
+function next() {
+    const content = document.getElementById("content");
+
+    const pages = [
+
+`<h1>📊 Executive Summary</h1>
+<p>After detailed emotional analysis (aka missing you),</p>
+<p>I propose a high-ROI engagement involving:</p>
+<p>🏌️ Golf<br>🧀🍕 Cheese & Pizza<br>🍰 Cheesecake<br>💋 Hugs & Kisses</p>
+<button onclick="next()">Continue</button>`,
+
+`<h1>💌 Availability Check</h1>
+<p>Are you ready for tomorrow?</p>
+<button onclick="next()">Yes baby 😌</button>
+<p class="small-note">Obviously No is not an option, iykyk hehe 💕</p>`,
+
+`<h1>🏌️ Phase 1: Golf Sprint</h1>
+<p>Objectives include:</p>
+<p>• Light competition<br>• Flirty trash talk<br>• Winner earns bonus kisses 😌</p>
+<button onclick="next()">Proceed</button>`,
+
+`<h1>🧀🍕 Phase 2: Cheese & Pizza Deployment</h1>
+<p>Energy optimization + cute conversations guaranteed.</p>
+<button onclick="next()">Continue</button>`,
+
+`<h1>🍰 Phase 3: Cheesecake Integration</h1>
+<p>Sweetness KPI expected to exceed projections.</p>
+<button onclick="next()">Finalize</button>`,
+
+`<h1>🚗 Logistics</h1>
+<p>I will personally pick you up from <b>Tis Hazari</b>.</p>
+<p>Be ready. Dress code: Extremely cute.</p>
+<button onclick="next()">Final Approval</button>`,
+
+`<h1>💚 Approval Required</h1>
+<p>Kindly approve this high-priority proposal.</p>
+<button onclick="approve()">Approved 😘</button>`
+];
+
+    if (step < pages.length) {
+        content.innerHTML = pages[step];
+        step++;
+    }
+}
+
+function approve() {
+    launchConfetti();
+    document.getElementById("content").innerHTML =
+    `<h1>💖 Proposal Approved!</h1>
+     <p>Deployment of hugs, kisses & Niharika Dose awaitinggg</p>
+     <p>See you tomorrow, my N, Your N is waiting for youuu😘</p>`;
+}
+
+function launchConfetti() {
+    for (let i = 0; i < 80; i++) {
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = 
+            ["#ff4d88", "#ffd6a5", "#ffffff", "#ff66b2"][Math.floor(Math.random() * 4)];
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
